@@ -36,6 +36,19 @@ const app = () => {
         }
     };
 
+    // We can animate the circle
+    song.ontimeupdate = () => {
+        let currentTime = song.currentTime;
+        let elapsed = fakeDuration - currentTime;
+        // when it gets to 60, it will jump back to zero
+        // Math.floor to round to whole number
+        let seconds = Math.floor(elapsed % 60);
+        let minutes = Math.floor(elapsed / 60);
+
+        // Animate the circle
+        let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
+        outline.style.strokeDashoffset = progress;
+    };
 };
 
 app();
