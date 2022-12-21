@@ -86,3 +86,16 @@ video {
 .sound-picker button img {
     height: 100%;
 }
+
+@media screen and (max-width: 768px) {
+    .time-select,
+    .sound-picker,
+    .player-container {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-position: fill;
+        background-repeat: repeat;
+    }
+}
