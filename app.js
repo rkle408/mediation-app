@@ -7,7 +7,8 @@ const app = () => {
     // Sounds
     const sounds = document.querySelectorAll('.sound-picker button');
     // Time Display
-    const timeDisplay = document.querySelectorAll('.time-display');
+    const timeDisplay = document.querySelector('.time-display');
+    const timeSelect = document.querySelectorAll('.time-select button');
     // Get the Length of the outline
     const outlineLength = outline.getTotalLength();
     console.log(outlineLength);
@@ -21,6 +22,14 @@ const app = () => {
     play.addEventListener('click', () => {
         checkPlaying(song);
     });
+
+    // Select sound
+    timeSelect.forEach(option => {
+        option.addEventListener('click', function() {
+            fakeDuration = this.getAttribute('data-time');
+            timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(fakeDuration % 60)}`
+        })
+    })
 
     // Create a function specific to stop and play sounds
     const checkPlaying = song => {
@@ -48,6 +57,9 @@ const app = () => {
         // Animate the circle
         let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
         outline.style.strokeDashoffset = progress;
+
+        // Animate the time text
+        timeDisplay.textContent = `${minutes}:${seconds}`;
     };
 };
 
